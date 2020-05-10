@@ -1,0 +1,57 @@
+// Coral Variables
+//$coral-bg-color: #e04050;
+// $coral-bg-color: #f04e6e;
+$coral-bg-color: #C23F59;
+$coral-bg-complement-color: #4ef0d0;
+
+// Bulma variables
+$navbar-background-color: $coral-bg-color;
+$navbar-item-color: #ffffff;
+$navbar-burger-color: $navbar-item-color;
+$navbar-height: 2rem;
+$navbar-padding-vertical: 0.25rem;
+$navbar-item-img-max-height: 3rem;
+// $primary: #4ef0d0;
+
+$body-background-color: hsl(0, 0%, 96%);
+// $box-padding: 1rem;
+
+@import './bulma/bulma';
+
+$box-shadow: 0 1em 1em -0.5em rgba($scheme-invert, 0.1), 0 1px 0 2px rgba($scheme-invert, 0.1);
+
+
+.navbar-burger {
+    width: 4rem;
+    height: 4rem;
+}
+
+.is-paddingless-horizontal {
+    padding-left: 0; 
+    padding-right: 0; 
+}
+
+.grid {
+	display: grid;
+	grid-template-columns:
+		[xl-start] 1fr 1.5rem [md-start] minmax(0, 624px) [md-end] 1.5rem 1fr [xl-end];
+}
+
+.grid *  { grid-column: md; }
+.grid-xl { grid-column: xl; }
+
+.coral-margin-padding {
+    margin: 0.3rem;
+    padding: 0.3rem;
+}
+
+.coral-margin {
+    margin: 0.3rem;
+}
+
+.coral-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

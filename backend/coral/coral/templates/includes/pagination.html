@@ -1,0 +1,21 @@
+{% load i18n coral_tags %}
+
+{% if items.paginator.num_pages > 1 %}
+<hr>
+<nav class="pagination is-rounded is-centered" role="navigation" aria-label="pagination">
+    <a class="pagination-previous" href="{% if items.has_previous %}?{% query_update request.GET 'p' items.previous_page_number as q %}{{q.urlencode}}{% else %}#{% endif %}" aria-label="Previous" {% if not items.has_previous %}disabled{% endif %}>
+        &laquo; {% trans 'Previous' %}
+    </a>
+    <a class="pagination-next" href="{% if items.has_next %}?{% query_update request.GET 'p' items.next_page_number as q %}{{q.urlencode}}{% else %}#{% endif %}" aria-label="Next" {% if not items.has_next %}disabled{% endif %}>
+        {% trans 'Next' %} &raquo;
+    </a>
+    <ul class="pagination-list">
+        {% for ii in items.paginator.num_pages %}
+            <li>
+                <a  class="pagination-link {% if ii == items.number %}is-current{% endif %}" href="?{{ii}}" aria-label="Goto page {{ ii }}" {% if ii == items.number %}aria-current="page"{% endif %}>{{ ii }}</a>
+                {% comment %} <span class="page-link">{% trans 'Page' %} {{ items.number }} {% trans 'of' %} {{ items.paginator.num_pages }}</span> {% endcomment %}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>
+{% endif %}

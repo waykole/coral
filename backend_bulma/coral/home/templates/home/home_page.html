@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+{% endcomment %}
+{% comment %} <link rel="stylesheet" href="{% static 'css/welcome_page.css' %}"> {% endcomment %}
+{% endblock extra_css %}
+
+{% block content %}
+
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+
+{% include 'home/welcome_page.html' %}
+{% endcomment %}
+<section class="section">
+<div class="container">
+    <h1 class="title">
+    Hello World
+    </h1>
+    <p class="subtitle">
+    My first website with <strong>Bulma</strong>!
+    </p>
+</div>
+</section>
+
+{% endblock content %}

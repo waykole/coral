@@ -1,0 +1,18 @@
+<!-- .section -->
+<section class="section is-paddingless-horizontal">
+    <div class="container grid">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+            {% if self.get_ancestors|length > 1 %}
+            <ul>
+                {% for page in self.get_ancestors %}
+                    {% if page.is_root == False %}
+                        <li><a href="{{ page.get_full_url }}">{{ page.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li class="is-active"><a href="#" aria-current="page">{{ self.title }}</a></li>
+            </ul>
+            {% endif %}
+        </nav>
+    </div>
+</section>
+<!-- /.section -->

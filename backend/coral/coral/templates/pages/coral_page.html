@@ -1,0 +1,27 @@
+{% extends "pages/base.html" %}
+
+{% block navbar %}
+    {% include 'pages/navbar.html' %}
+    {% comment %} {% include 'snippets/navbar.html' %} {% endcomment %}
+{% endblock %}
+
+{% block index_filters %}
+    {% if page.index_show_subpages and page.index_classifiers.exists %}
+    <div class="container">
+        {% include "includes/category_dropdowns.html" with formclass="form-inline" %}
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block index_content %}
+    {% if page.index_show_subpages %}
+    <div class="container">
+        {{block.super}}
+    </div>
+    <p>Basically it's a way to map a combined/minified file back to an unbuilt state. When you build for production, along with minifying and combining your JavaScript files, you generate a source map which holds information about your original files. When you query a certain line and column number in your generated JavaScript you can do a lookup in the source map which returns the original location. Developer tools (currently WebKit nightly builds, Google Chrome, or Firefox 23+) can parse the source map automatically and make it appear as though you're running unminified and uncombined files.</p>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+{% include 'snippets/footer.html' %}
+{% endblock %}

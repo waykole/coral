@@ -1,0 +1,87 @@
+{% load wagtailcore_tags wagtailsettings_tags wagtailimages_tags coral_tags i18n %}
+{% comment %} {% get_settings %} {% endcomment %}
+
+{% comment %} {% if not settings.coral.LayoutSettings.navbar_wrapper_fluid %}
+<div class="container">
+{% endif %} {% endcomment %}
+
+<nav class="navbar has-shadow is-spaced {% get_navbar_css %}">
+
+  <div class="container">
+
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        {% if settings.common.LayoutSettings.logo %}
+          {% image settings.common.LayoutSettings.logo original as logo %}
+          <img src="{{logo.url}}" alt="{{request.site.site_name}}"/>
+        {% else %}
+          {{request.site.site_name}}
+        {% endif %}
+      </a>    
+
+    {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button> {% endcomment %}
+
+      <div id="navbarBurger" class="navbar-burger burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </div>      
+    </div>
+
+    <div class="navbar-menu">
+      <div class="navbar-start">
+        <!-- navbar items -->
+      </div>
+
+      <div class="navbar-end">
+        <a class="navbar-item">Home</a>
+        <a class="navbar-item">Pregnancy</a>
+        <a class="navbar-item">New Born</a>
+        <a class="navbar-item">Baby</a>
+        <a class="navbar-item">Toddler</a>
+        <a class="navbar-item">Preschooler</a>
+      </div>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar">
+      {% get_navbars as navbars %}
+      {% for navbar in navbars %}
+      <ul class="navbar-nav {{navbar.custom_css_class}}"
+        {% if navbar.custom_id %}id="{{navbar.custom_id}}"{% endif %} >
+        {% for item in navbar.menu_items %}
+            {% include_block item with liclass="nav-item" aclass="nav-link" ga_event_category="Navbar" %}
+        {% endfor %}
+      </ul>
+      {% endfor %}
+      {% if settings.coral.LayoutSettings.navbar_search %}
+      {% comment %} <form class="form-inline ml-auto" action="{% url 'codered_search' %}" method="GET">
+          {% load bootstrap4 %}
+          {% get_searchform request as form %}
+          {% bootstrap_form form layout='inline' %}
+          <div class="form-group">
+            <button class="btn btn-outline-primary ml-2" type="submit">{% trans 'Search' %}</button>
+          </div>
+      </form> {% endcomment %}
+      {% endif %}
+
+
+    </div>
+
+  </div><!-- /.container -->
+
+</nav>
+
+{% comment %} {% if not settings.coral.LayoutSettings.navbar_wrapper_fluid %}
+</div><!-- /.container -->
+{% endif %} {% endcomment %}
+
+{# Navbar offset #}
+{% if settings.coral.LayoutSettings.navbar_fixed %}
+    {% if settings.coral.LayoutSettings.logo %}
+      <div class="{{settings.coral.LayoutSettings.navbar_format}}-fixed-img-offset {{settings.coral.LayoutSettings.navbar_collapse_mode}}"></div>
+    {% else %}
+      <div class="{{settings.coral.LayoutSettings.navbar_format}}-fixed-offset {{settings.coral.LayoutSettings.navbar_collapse_mode}}"></div>
+    {% endif %}
+{% endif %}
