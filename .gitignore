@@ -1,5 +1,7 @@
 
 backend/venv
+backend/coral/static
+backend/coral/get-pip.py
 backend_old/venv
 backend_bulma/venv
 backend/coral/blocks/__pycache__/__init__.cpython-37.pyc
