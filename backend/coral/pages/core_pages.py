@@ -113,6 +113,20 @@ class CoralPageMixin(models.Model):
         verbose_name=_('Cover image'),
     )
 
+    # ###############
+    # # SEO fields
+    # ###############
+
+    og_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name=_('Open Graph preview image'),
+        help_text=_("The image shown when linking to this page on social media. If blank, defaults to article cover image, or logo in Settings > Layout > Logo"),  # noqa
+    )
+
     ###############
     # Settings
     ###############
@@ -137,17 +151,27 @@ class CoralPageMixin(models.Model):
 
     bottom_content_panels = []
 
-    category_panels = []
+    # category_panels = []
 
-    layout_panels = []
+    # layout_panels = []
 
-    promote_panels = []
+    promote_panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel('slug'),
+                FieldPanel('seo_title'),
+                FieldPanel('search_description'),
+                ImageChooserPanel('og_image'),
+            ],
+            _('Page Meta Data')
+        ),
+    ]
 
     settings_panels = [
         StreamFieldPanel('content_walls'),
     ]
 
-    integration_panels = []
+    # integration_panels = []
 
     def __init__(self, *args, **kwargs):
         """
@@ -166,18 +190,18 @@ class CoralPageMixin(models.Model):
                 cls.content_panels + cls.body_content_panels + cls.bottom_content_panels,
                 heading=_('Content')
             ),
-            ObjectList(cls.category_panels, heading=_('Category')),
-            ObjectList(cls.layout_panels, heading=_('Layout')),
-            # ObjectList(cls.promote_panels, heading=_('SEO'), classname="seo"),
+            # ObjectList(cls.category_panels, heading=_('Category')),
+            # ObjectList(cls.layout_panels, heading=_('Layout')),
+            ObjectList(cls.promote_panels, heading=_('SEO'), classname="seo"),
             ObjectList(cls.settings_panels, heading=_('Settings'), classname="settings"),
         ]
 
-        if cls.integration_panels:
-            panels.append(ObjectList(
-                cls.integration_panels,
-                heading='Integrations',
-                classname='integrations'
-            ))
+        # if cls.integration_panels:
+        #     panels.append(ObjectList(
+        #         cls.integration_panels,
+        #         heading='Integrations',
+        #         classname='integrations'
+        #     ))
 
         return TabbedInterface(panels).bind_to(model=cls)
 

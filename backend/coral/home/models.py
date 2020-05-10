@@ -32,8 +32,10 @@ class HomePage(CoralPageMixin, Page, metaclass=CoralPageMeta):
 
     body = StreamField(CONTENT_STREAMBLOCKS, null=True, blank=True)
 
-    content_panels = [
+    content_panels = Page.content_panels + CoralPageMixin.content_panels + [
         StreamFieldPanel('body'),
     ]
+
+    settings_panels = Page.settings_panels + CoralPageMixin.settings_panels
 
 
