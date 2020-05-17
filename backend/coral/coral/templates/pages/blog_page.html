@@ -1,6 +1,6 @@
 {% extends "pages/web_page.html" %}
 
-{% load wagtailadmin_tags wagtailcore_tags wagtailimages_tags coral_tags %}
+{% load static wagtailadmin_tags wagtailcore_tags wagtailimages_tags coral_tags %}
 
 {% block description %}{{self.get_description}}{% endblock %}
 {% block html_seo_extra %}
@@ -57,24 +57,48 @@
             {% endif %}
         </div>
 
-        <!-- .media -->
-        <article class="media coral-center">
-            <figure class="media-left">
-                <figure class="image is-64x64">
-                    <img class="is-rounded" src="https://bulma.io/images/placeholders/64x64.png">
-                </figure>
-            </figure>
-            <div class="media-content">
-                <div class="content">
-                    <p>
-                        <strong>{{self.get_author_name}}</strong> <a>@username_zaydek</a><br>
-                        <span class="has-text-grey">Self-taught, inspired to learn<br>
-                        <time datetime="{{ self.get_pub_date }}">{{ self.get_pub_date }}</time> · 20 min read</span>
-                    </p>
+        <div id="coral-author-share-grid">
+            <div id="author">
+                <!-- .media -->
+                <div class="media coral-center">
+                    <figure class="media-left">
+                        {% comment %} <figure class="image is-desktop is-64x64"> {% endcomment %}
+                        <figure class="image is-64x64">
+                            <img class="is-rounded" src="https://bulma.io/images/placeholders/64x64.png">
+                        </figure>
+                        {% comment %} <figure class="image is-touch is-48x48">
+                            <img class="is-rounded" src="https://bulma.io/images/placeholders/48x48.png">
+                        </figure> {% endcomment %}
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <p class="is-size-6-desktop is-size-7-touch">
+                                <strong>{{self.get_author_name}}</strong> <a>@username_zaydek</a><br>
+                                <span class="has-text-grey">Self-taught, inspired to learn<br>
+                                <time datetime="{{ self.get_pub_date }}">{{ self.get_pub_date }}</time> · 20 min read</span>
+                            </p>
+                        </div>
+                    </div>
                 </div>
+                <!-- /.media -->
             </div>
-        </article>
-        <!-- /.media -->
+            <div id="share" class="container coral-center">
+                <span class="icon is-medium is-rounded">
+                    <i class="fab fa-facebook fa-lg fa-w-16"></i>
+                </span>
+                <span class="icon is-medium is-rounded">
+                    <i class="fab fa-twitter fa-lg fa-w-16"></i>
+                </span>
+                <span class="icon is-medium is-rounded">
+                    <i class="fab fa-whatsapp fa-lg fa-w-16"></i>
+                </span>
+                <span class="icon is-medium is-rounded">
+                    <i class="far fa-bookmark fa-lg fa-w-16"></i>
+                </span>
+            </div>
+        </div>
+
+        <br>
 
 
             {% comment %} <p>
@@ -95,16 +119,65 @@
             </p>
         </div>     {% endcomment %}
         {% comment %} <hr> {% endcomment %}
+
+        <!-- .columns -->
         {% if self.cover_image %}
         {% image self.cover_image fill-2000x1000 as cover_image %}
-        <figure class="image is-fullwidth">
-            <img src="{{cover_image.url}}"/>
+        <figure class="columns is-mobile is-variable is-0 is-marginless grid-xl">
+            <div class="column">
+                <div class="image">
+                    <a><img src="{{cover_image.url}}" alt="{{cover_image.image.title}}"></a>
+                </div>
+            </div>
         </figure>
+        <figcaption class="level">
+            <small class="level-item has-text-grey">
+                The blog we'll build. Click to continue on Scrimba
+            </small>
+        </figcaption>
         {% endif %}
+        <!-- /.columns -->
+
+
+       
+        {% comment %} <figure class="image grid-xl">
+            <img src="{{cover_image.url}}"/>
+        </figure> {% endcomment %}
+
         
-        <div class="content">
+        <div class="content is-medium">
             {% include_block self.body with settings=settings %}
         </div>
+
+        {% comment %} Separate footer with horizontal rule. {% endcomment %}
+        <hr>
+
+        <!-- .hero-foot -->
+        <section class="hero-foot">
+            <div class="level" id="coral-claps-share-grid">
+                <div class="level-left is-flex single-spaced" id="claps">
+                    <figure class="image is-32x32">
+                        <img class="is-rounded" src="{% static 'icons/noun_clap_2345415.svg' %}">
+                    </figure>
+                    <p><span class="has-text-grey is-3">100 Claps</span></p>
+                </div>
+                <div class="level-right is-marginless" id="share">
+                    <span class="icon is-medium is-rounded">
+                        <i class="fab fa-facebook fa-lg fa-w-16"></i>
+                    </span>
+                    <span class="icon is-medium is-rounded">
+                        <i class="fab fa-twitter fa-lg fa-w-16"></i>
+                    </span>
+                    <span class="icon is-medium is-rounded">
+                        <i class="fab fa-whatsapp fa-lg fa-w-16"></i>
+                    </span>
+                    <span class="icon is-medium is-rounded">
+                        <i class="far fa-bookmark fa-lg fa-w-16"></i>
+                    </span>
+                </div>
+            </div>
+        </section>
+        <!-- /.hero-foot -->
 
     </article>
 </div>

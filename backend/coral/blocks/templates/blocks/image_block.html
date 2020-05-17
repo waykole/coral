@@ -12,9 +12,17 @@ alt="{{self_image.image.title}}"></amp-img>
 
 {% else %}
 
-<img src="{{self_image.url}}"
+<figure class="columns is-mobile is-variable is-0 is-marginless grid-xl">
+    <div class="column">
+        <div class="image is-5by3">
+            <a><img src="{{self_image.url}}" alt="{{self_image.image.title}}"></a>
+        </div>
+    </div>
+</figure>
+
+{% comment %} <img src="{{self_image.url}}"
 class="w-100 {{self.settings.custom_css_class}}"
 {% if self.custom_css_id %}id="{{self.settings.custom_css_id}}"{% endif %}
-alt="{{self_image.image.title}}" />
+alt="{{self_image.image.title}}" /> {% endcomment %}
 
 {% endif %}
