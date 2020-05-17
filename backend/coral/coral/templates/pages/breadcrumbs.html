@@ -1,7 +1,7 @@
 <!-- .section -->
-<section class="section is-paddingless-horizontal">
-    <div class="container grid">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
+{% comment %} <section class="section is-paddingless-horizontal"> {% endcomment %}
+    <div class="section is-paddingless coral-center">
+        <nav class="breadcrumb is-size-6" aria-label="breadcrumbs">
             {% if self.get_ancestors|length > 1 %}
             <ul>
                 {% for page in self.get_ancestors %}
@@ -14,5 +14,5 @@
             {% endif %}
         </nav>
     </div>
-</section>
+{% comment %} </section> {% endcomment %}
 <!-- /.section -->

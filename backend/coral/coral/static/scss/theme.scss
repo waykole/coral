@@ -1,8 +1,9 @@
 // Coral Variables
 //$coral-bg-color: #e04050;
 // $coral-bg-color: #f04e6e;
-$coral-bg-color: #C23F59;
+// $coral-bg-color: #C23F59;
 $coral-bg-complement-color: #4ef0d0;
+$coral-bg-color: #3e2810;
 
 // Bulma variables
 $navbar-background-color: $coral-bg-color;
@@ -26,19 +27,28 @@ $box-shadow: 0 1em 1em -0.5em rgba($scheme-invert, 0.1), 0 1px 0 2px rgba($schem
     height: 4rem;
 }
 
+.is-paddingless {
+    padding: 0; 
+}
+
+.is-padding-10 {
+    padding: 1.0rem; 
+}
+
 .is-paddingless-horizontal {
     padding-left: 0; 
     padding-right: 0; 
 }
 
-.grid {
+.coral-grid {
 	display: grid;
 	grid-template-columns:
 		[xl-start] 1fr 1.5rem [md-start] minmax(0, 624px) [md-end] 1.5rem 1fr [xl-end];
+		// [xl-start] 1fr 1.5rem [md-start] minmax(0, 750px) [md-end] 1.5rem 1fr [xl-end];
 }
 
-.grid *  { grid-column: md; }
-.grid-xl { grid-column: xl; }
+.coral-grid *  { grid-column: md; }
+.coral-grid-xl { grid-column: xl; }
 
 .coral-margin-padding {
     margin: 0.3rem;

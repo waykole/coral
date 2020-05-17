@@ -41,10 +41,78 @@
 
 {% block content %}
 
-{% include 'pages/breadcrumbs.html' %}
 
 <!-- .section -->
-<section class="section">
+<section class="section is-paddingless-horizontal coral-grid">
+
+
+<div class="section is-paddingless">
+    <article class="box">
+        {% include 'pages/breadcrumbs.html' %}
+
+        <div class="section is-padding-10">
+            <h1 class="title">{{ self.title }}</h1>
+            {% if self.caption %}
+                <p class="subtitle">{{self.caption}}</p>
+            {% endif %}
+        </div>
+
+        <!-- .media -->
+        <article class="media coral-center">
+            <figure class="media-left">
+                <figure class="image is-64x64">
+                    <img class="is-rounded" src="https://bulma.io/images/placeholders/64x64.png">
+                </figure>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong>{{self.get_author_name}}</strong> <a>@username_zaydek</a><br>
+                        <span class="has-text-grey">Self-taught, inspired to learn<br>
+                        <time datetime="{{ self.get_pub_date }}">{{ self.get_pub_date }}</time> · 20 min read</span>
+                    </p>
+                </div>
+            </div>
+        </article>
+        <!-- /.media -->
+
+
+            {% comment %} <p>
+                {% if self.author_display %}
+                <span class="article-author">{{self.get_author_name}}</span>
+                {% elif self.author %}
+                <img class="article-author-img rounded-circle mr-2" src="{% avatar_url self.author %}">
+                <span class="article-author">{{self.get_author_name}}</span>
+                {% endif %}
+
+                {% if self.get_author_name and self.get_pub_date %}
+                <span class="mx-2">&bull;</span>
+                {% endif %}
+
+                {% if self.get_pub_date %}
+                <span class="article-date">{{ self.get_pub_date }}</span>
+                {% endif %}
+            </p>
+        </div>     {% endcomment %}
+        {% comment %} <hr> {% endcomment %}
+        {% if self.cover_image %}
+        {% image self.cover_image fill-2000x1000 as cover_image %}
+        <figure class="image is-fullwidth">
+            <img src="{{cover_image.url}}"/>
+        </figure>
+        {% endif %}
+        
+        <div class="content">
+            {% include_block self.body with settings=settings %}
+        </div>
+
+    </article>
+</div>
+
+
+
+
+
     <div class="columns is-12">
         <div class="column is-3 is-hidden-mobile"></div>
         <div class="column is-6 is-flex-desktop coral-margin-padding">
