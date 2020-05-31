@@ -47,7 +47,8 @@ $box-shadow: 0 1em 1em -0.5em rgba($scheme-invert, 0.1), 0 1px 0 2px rgba($schem
 		// [xl-start] 1fr 1.5rem [md-start] minmax(0, 750px) [md-end] 1.5rem 1fr [xl-end];
 }
 
-.coral-grid *  { grid-column: md; }
+.coral-grid > *  { grid-column: md; }
+.coral-grid > figure  { grid-column: 1 / -1; }
 .coral-grid-xl { grid-column: xl; }
 
 // 672 = 624 + 2 * 1.5rem i.e. 24 px
@@ -57,30 +58,27 @@ $box-shadow: 0 1em 1em -0.5em rgba($scheme-invert, 0.1), 0 1px 0 2px rgba($schem
 	}
 }
 
-#author { grid-area: author; }
-#share { grid-area: share; }
-#claps { grid-area: claps; }
+#author { grid-area: a; }
+#share { grid-area: s; }
+#claps { grid-area: c; }
 
 #coral-author-share-grid {
     display: grid;
-    grid-template-areas: "author share";
+    grid-template-areas: "a s";
     grid-row-gap: 1rem;
 }
 
 #coral-claps-share-grid {
     display: grid;
-    grid-template-areas: "claps share";
+    grid-template-areas: "c s";
     grid-row-gap: 1rem;
 }
 
 @media (max-width: 512px) {
     #coral-author-share-grid {
         grid-template-areas:
-            "share"
-            "author";
-    }
-    #coral-author-share-grid {
-        grid-template-areas: "claps share";
+            "s"
+            "a";
     }
 }
 

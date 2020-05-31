@@ -46,8 +46,8 @@
 <section class="section is-paddingless-horizontal coral-grid">
 
 
-<div class="section is-paddingless">
-    <article class="box">
+<article class="box">
+    {% comment %} <article class="box"> {% endcomment %}
         {% include 'pages/breadcrumbs.html' %}
 
         <div class="section is-padding-10">
@@ -123,7 +123,7 @@
         <!-- .columns -->
         {% if self.cover_image %}
         {% image self.cover_image fill-2000x1000 as cover_image %}
-        <figure class="columns is-mobile is-variable is-0 is-marginless grid-xl">
+        <figure class="columns is-mobile is-variable is-0 is-marginless">
             <div class="column">
                 <div class="image">
                     <a><img src="{{cover_image.url}}" alt="{{cover_image.image.title}}"></a>
@@ -179,8 +179,8 @@
         </section>
         <!-- /.hero-foot -->
 
-    </article>
-</div>
+    {% comment %} </article> {% endcomment %}
+</article>
 
 
 
